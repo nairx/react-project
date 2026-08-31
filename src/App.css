@@ -2,3 +2,22 @@
     color: maroon;
     background-color: yellow;
 }
+
+.row{
+    display:flex;
+    justify-content: center;
+}
+
+.row div{
+    margin:5px;
+    border:1px solid gray;
+    padding:3px
+}
+
+.row button{
+    width: 100%;
+    padding:9px;
+    background-color: teal;
+    color:white;
+    border:none
+}
