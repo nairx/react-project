@@ -1,15 +1,64 @@
-import Header from "./Header";
-import Footer from "./Footer"
-import Home from "./Home"
+import React from "react";
 
-function App() {
-  return (
-    <>
-      <Header />
-      <Home/>
-      <Footer/>
-   </>
-  )
+function Child1() {
+  return <div>Child 1</div>;
 }
 
-export default App;
+function Child2() {
+  return <div>Child 2</div>;
+}
+
+function Home({children}) {
+  return <div style={{ color: "blue" }}>{children}</div>;
+}
+
+export default function App() {
+  return (
+    <Home>
+      <Child1 />
+      <Child2 />
+    </Home>
+  );
+}
+
+// function Greet({name,age}) {
+//   return <h2>Hello {name}-{age}</h2>;
+// }
+
+// export default function App() {
+//   return (
+//     <div>
+//       <Greet name="Amy" age={21} />
+//     </div>
+//   );
+// }
+
+// import React from "react";
+
+// function Greet(props) {
+//   return <h2>Hello {props.name}-{props.age}</h2>;
+// }
+
+// export default function App() {
+//   return (
+//     <div>
+//       <Greet name="Amy" age={21} />
+//     </div>
+//   );
+// }
+
+// import Header from "./Header";
+// import Footer from "./Footer"
+// import Home from "./Home"
+
+// function App() {
+//   return (
+//     <>
+//       <Header />
+//       <Home/>
+//       <Footer/>
+//    </>
+//   )
+// }
+
+// export default App;
