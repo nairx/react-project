@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useContext } from "react";
-import { AppContext } from "./App";
+import { AppContext } from "../App";
+import { useNavigate } from "react-router-dom";
 export default function Register() {
   const { users, setUsers } = useContext(AppContext);
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const navigate = useNavigate()
   const handleSubmit = () => {
     setUsers([
       ...users,
@@ -15,10 +17,10 @@ export default function Register() {
         password,
       },
     ]);
-    console.log(users);
+    navigate("/login")
   };
   return (
-    <div style={{ display: "flex" }}>
+ 
       <div>
         Register
         <p>
@@ -46,17 +48,6 @@ export default function Register() {
           <button onClick={handleSubmit}>Submit</button>
         </p>
       </div>
-
-      <div>
-        User List
-        <ol>
-          {users.map((user) => (
-            <li>
-              {user.name}-{user.email}-{user.password}
-            </li>
-          ))}
-        </ol>
-      </div>
-    </div>
+    
   );
 }

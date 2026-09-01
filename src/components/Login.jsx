@@ -1,17 +1,20 @@
 import React from "react";
-import { AppContext } from "./App";
+import { AppContext } from "../App";
 import { useContext, useState } from "react";
+
+import { Link, useNavigate } from "react-router-dom";
 export default function Login() {
   const { users, setUsers } = useContext(AppContext);
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [message, setMessage] = useState();
+  const navigate = useNavigate();
   const handleLogin = () => {
     const found = users.find(
       (user) => user.email === email && user.password === password,
     );
     if (found) {
-      setMessage("Welcome " + found.name);
+      navigate("/");
     } else {
       setMessage("Access Denied");
     }
@@ -35,6 +38,9 @@ export default function Login() {
         />
       </p>
       <button onClick={handleLogin}>Login</button>
+      <p>
+        New User <Link to="/register">Register here</Link>
+      </p>
     </div>
   );
 }

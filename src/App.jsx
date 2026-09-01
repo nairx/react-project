@@ -1,19 +1,36 @@
 import React, { useState } from "react";
-import Login from "./Login";
-import Register from "./Register";
+import Login from "./components/Login";
+import Register from "./components/Register";
 import { createContext } from "react";
-export const AppContext= createContext()
+export const AppContext = createContext();
+import router from "./router";
+import { RouterProvider } from "react-router-dom";
 
 export default function App() {
-  const [users,setUsers] = useState([])
+  const [users, setUsers] = useState([]);
   return (
-    <AppContext.Provider value={{users,setUsers}}>
-      <Register />
-      <hr />
-      <Login />
+    <AppContext.Provider value={{ users, setUsers }}>
+      <RouterProvider router={router} />
     </AppContext.Provider>
   );
 }
+
+// import React, { useState } from "react";
+// import Login from "./Login";
+// import Register from "./Register";
+// import { createContext } from "react";
+// export const AppContext= createContext()
+
+// export default function App() {
+//   const [users,setUsers] = useState([])
+//   return (
+//     <AppContext.Provider value={{users,setUsers}}>
+//       <Register />
+//       <hr />
+//       <Login />
+//     </AppContext.Provider>
+//   );
+// }
 
 // import React from "react";
 // import { useState } from "react";
