@@ -1,38 +1,51 @@
 import React from "react";
-import { useState } from "react";
+import Login from "./Login";
+import Register from "./Register";
+
 export default function App() {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [message, setMessage] = useState();
-  const handleLogin = () => {
-    if (email === "john@gmail.com" && password === "1234") {
-      setMessage("Welcome!");
-    } else {
-      setMessage("Access Denied");
-    }
-  };
   return (
     <div>
-      <p>
-        <input
-          type="text"
-          placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </p>
-      <p>
-        <input
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
-      </p>
-      <button onClick={handleLogin}>Login</button>
-      <hr />
-      {message}
+      <Register />
+      <Login />
     </div>
   );
 }
+
+// import React from "react";
+// import { useState } from "react";
+// export default function App() {
+//   const [email, setEmail] = useState();
+//   const [password, setPassword] = useState();
+//   const [message, setMessage] = useState();
+//   const handleLogin = () => {
+//     if (email === "john@gmail.com" && password === "1234") {
+//       setMessage("Welcome!");
+//     } else {
+//       setMessage("Access Denied");
+//     }
+//   };
+//   return (
+//     <div>
+//       <p>
+//         <input
+//           type="text"
+//           placeholder="Email"
+//           onChange={(e) => setEmail(e.target.value)}
+//         />
+//       </p>
+//       <p>
+//         <input
+//           type="password"
+//           onChange={(e) => setPassword(e.target.value)}
+//           placeholder="Password"
+//         />
+//       </p>
+//       <button onClick={handleLogin}>Login</button>
+//       <hr />
+//       {message}
+//     </div>
+//   );
+// }
 
 // import React, { useState,useContext } from "react";
 // import { createContext } from "react";
