@@ -1,50 +1,86 @@
-import React, { useState,useContext } from "react";
-import { createContext } from "react";
-
-export const AppContext = createContext();
-
-function Child1() {
-  const {name,setName} = useContext(AppContext)
-  const handleUpdate = () => {
-    setName("Amy");
-  };
-  return (
-    <div>
-      Child 1 - {name} <button onClick={handleUpdate}>Update</button>
-    </div>
-  );
-}
-
-function Child2() {
-  const {name,setName} = useContext(AppContext)
-  const handleUpdate = () => {
-    setName("Amy");
-  };
-  return (
-    <div>
-      Child 2 - {name} <button onClick={handleUpdate}>Update</button>
-    </div>
-  );
-}
-
+import React from "react";
+import { useState } from "react";
 export default function App() {
-  const [name, setName] = useState("John");
-  const handleUpdate = () => {
-    setName("Amy");
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [message, setMessage] = useState();
+  const handleLogin = () => {
+    if (email === "john@gmail.com" && password === "1234") {
+      setMessage("Welcome!");
+    } else {
+      setMessage("Access Denied");
+    }
   };
   return (
     <div>
       <p>
-        App-{name}
-        <button onClick={handleUpdate}>Update</button>
+        <input
+          type="text"
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
       </p>
-      <AppContext.Provider value={{ name, setName }}>
-        <Child1 />
-        <Child2 />'
-      </AppContext.Provider>
+      <p>
+        <input
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+        />
+      </p>
+      <button onClick={handleLogin}>Login</button>
+      <hr />
+      {message}
     </div>
   );
 }
+
+// import React, { useState,useContext } from "react";
+// import { createContext } from "react";
+
+// export const AppContext = createContext();
+
+// function Child1() {
+//   const {name,setName} = useContext(AppContext)
+//   const handleUpdate = () => {
+//     setName("Amy");
+//   };
+//   return (
+//     <div>
+//       Child 1 - {name} <button onClick={handleUpdate}>Update</button>
+//     </div>
+//   );
+// }
+
+// function Child2() {
+//   const {name,setName} = useContext(AppContext)
+//   const handleUpdate = () => {
+//     setName("Amy");
+//   };
+//   return (
+//     <div>
+//       Child 2 - {name} <button onClick={handleUpdate}>Update</button>
+//     </div>
+//   );
+// }
+
+// export default function App() {
+//   const [name, setName] = useState("John");
+//   const handleUpdate = () => {
+//     setName("Amy");
+//   };
+//   return (
+//     <div>
+//       <p>
+//         App-{name}
+//         <button onClick={handleUpdate}>Update</button>
+//       </p>
+//       <AppContext.Provider value={{ name, setName }}>
+//         <Child1 />
+//         <Child2 />'
+//       </AppContext.Provider>
+//     </div>
+//   );
+// }
 
 // import React, { useState } from 'react'
 
