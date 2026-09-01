@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Login from "./Login";
 import Register from "./Register";
+import { createContext } from "react";
+export const AppContext= createContext()
 
 export default function App() {
+  const [users,setUsers] = useState([])
   return (
-    <div>
+    <AppContext.Provider value={{users,setUsers}}>
       <Register />
+      <hr />
       <Login />
-    </div>
+    </AppContext.Provider>
   );
 }
 
