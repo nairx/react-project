@@ -11,6 +11,9 @@ function Header() {
         <li>
           <Link to="/">Home</Link>
         </li>
+         <li>
+          <Link to="cart">Cart</Link>
+        </li>
         <li>
           {currUser?.email ? (
             <Link to="login">Logout</Link>
