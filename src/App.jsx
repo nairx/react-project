@@ -1,21 +1,93 @@
-import React from "react";
-import { useState } from "react";
-export default function App() {
-  const [count, setCount] = useState(0);
-  const increment = () => {
-    setCount(count + 1);
-  };
-  const decrement = () => {
-    setCount(count - 1);
+import React, { useState,useContext } from "react";
+import { createContext } from "react";
+
+export const AppContext = createContext();
+
+function Child1() {
+  const {name,setName} = useContext(AppContext)
+  const handleUpdate = () => {
+    setName("Amy");
   };
   return (
     <div>
-      <button onClick={decrement}>-</button>
-      {count}
-      <button onClick={increment}>+</button>
+      Child 1 - {name} <button onClick={handleUpdate}>Update</button>
     </div>
   );
 }
+
+function Child2() {
+  const {name,setName} = useContext(AppContext)
+  const handleUpdate = () => {
+    setName("Amy");
+  };
+  return (
+    <div>
+      Child 2 - {name} <button onClick={handleUpdate}>Update</button>
+    </div>
+  );
+}
+
+export default function App() {
+  const [name, setName] = useState("John");
+  const handleUpdate = () => {
+    setName("Amy");
+  };
+  return (
+    <div>
+      <p>
+        App-{name}
+        <button onClick={handleUpdate}>Update</button>
+      </p>
+      <AppContext.Provider value={{ name, setName }}>
+        <Child1 />
+        <Child2 />'
+      </AppContext.Provider>
+    </div>
+  );
+}
+
+// import React, { useState } from 'react'
+
+// function Child1({name}){
+//   return <div>Child 1 - {name}</div>
+// }
+
+// function Child2({name}){
+//   return <div>Child 2 - {name}</div>
+// }
+
+// export default function App() {
+//   const [name,setName] = useState("John")
+// const handleUpdate = () => {
+//   setName("Amy")
+// }
+//   return (
+//     <div>
+//       <p>App-{name}<button onClick={handleUpdate}>Update</button></p>
+//       <Child1 name={name}/>
+//       <Child2 name={name}/>'
+//     </div>
+//   )
+// }
+
+// import React from "react";
+// import { useState } from "react";
+// export default function App() {
+//   const [count, setCount] = useState(0);
+//   const increment = () => {
+//     setCount(count + 1);
+//   };
+//   const decrement = () => {
+//     setCount(count - 1);
+//   };
+//   return (
+//     <div>
+//       <button onClick={decrement}>-</button>
+//       {count}
+//       <button onClick={increment}>+</button>
+//     </div>
+//   );
+// }
 
 // import React from 'react'
 // import { useState } from 'react'
