@@ -15,35 +15,48 @@ export default function Register() {
         password,
       },
     ]);
-    console.log(users)
+    console.log(users);
   };
   return (
-    <div>
-      Register
-      <p>
-        <input
-          type="text"
-          placeholder="Name"
-          onChange={(e) => setName(e.target.value)}
-        />
-      </p>
-      <p>
-        <input
-          type="text"
-          placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </p>
-      <p>
-        <input
-          type="password"
-          placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </p>
-      <p>
-        <button onClick={handleSubmit}>Submit</button>
-      </p>
+    <div style={{ display: "flex" }}>
+      <div>
+        Register
+        <p>
+          <input
+            type="text"
+            placeholder="Name"
+            onChange={(e) => setName(e.target.value)}
+          />
+        </p>
+        <p>
+          <input
+            type="text"
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </p>
+        <p>
+          <input
+            type="password"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </p>
+        <p>
+          <button onClick={handleSubmit}>Submit</button>
+        </p>
+      </div>
+
+      <div>
+        User List
+        <ol>
+          {users.map((user) => (
+            <li>
+              {user.name}-{user.email}-{user.password}
+            </li>
+          ))}
+        </ol>
+      </div>
     </div>
   );
 }
