@@ -15,14 +15,11 @@ export default function Login() {
   const [message, setMessage] = useState();
   const navigate = useNavigate();
   const API = import.meta.env.VITE_API_URL;
-  console.log("Re-render")
   const handleLogin = async () => {
     // const found = users.find(
     //   (user) => user.email === email && user.password === password,
     // );
-
-
-    
+    console.log("Component Updated")   
     const found = await axios.post(`${API}/users/login`, { email:emailRef.current.value, password:passwordRef.current.value });
     console.log(found);
     if (found.data.email) {
@@ -35,6 +32,10 @@ export default function Login() {
 
   useEffect(() => {
     setCurrUser({});
+    console.log("Component Mounted")
+    return () => {
+      console.log("Component Unmounted")
+    }
   }, []);
 
   return (
