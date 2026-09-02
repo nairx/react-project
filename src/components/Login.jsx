@@ -1,6 +1,7 @@
 import React from "react";
 import { AppContext } from "../App";
 import { useContext, useState, useEffect } from "react";
+import axios from "axios";
 
 import { Link, useNavigate } from "react-router-dom";
 export default function Login() {
@@ -9,12 +10,16 @@ export default function Login() {
   const [password, setPassword] = useState();
   const [message, setMessage] = useState();
   const navigate = useNavigate();
-  const handleLogin = () => {
-    const found = users.find(
-      (user) => user.email === email && user.password === password,
-    );
-    if (found) {
-      setCurrUser({ name: found.name, email: found.email });
+  const API = import.meta.env.VITE_API_URL;
+  const handleLogin = async () => {
+    // const found = users.find(
+    //   (user) => user.email === email && user.password === password,
+    // );
+
+    const found = await axios.post(`${API}/users/login`, { email, password });
+    console.log(found);
+    if (found.data.email) {
+      setCurrUser({ name: found.data.name, email: found.data.email });
       navigate("/");
     } else {
       setMessage("Access Denied");
