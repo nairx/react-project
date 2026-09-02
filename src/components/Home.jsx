@@ -15,9 +15,11 @@ export default function Home() {
   };
 
   const addToCart = (product) => {
-    product.quantity = 1;
-    setCart([...cart, product]);
-    console.log(cart)
+    const found = cart.find((item) => item.id === product.id);
+    if (!found) {
+      product.quantity = 1;
+      setCart([...cart, product]);
+    }
   };
 
   useEffect(() => {
