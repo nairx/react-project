@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { AppContext } from "../App";
 import { useContext } from "react";
+import Child from "./Child";
 import { useNavigate } from "react-router-dom";
 export default function Cart() {
   const { cart, setCart, currUser } = useContext(AppContext);
+  const [counter,setCounter] = useState(0)
   const navigate = useNavigate();
   const increment = (id) => {
     setCart(
@@ -43,7 +45,7 @@ export default function Cart() {
           <ol>
             {cart &&
               cart.map((item) => (
-                <li>
+                <li key={item.id}>
                   {item.name}-{item.price}-
                   <button onClick={() => decrement(item.id)}>-</button>
                   {item.quantity}
@@ -60,6 +62,12 @@ export default function Cart() {
       ) : (
         <h3>You cart is empty</h3>
       )}
+      <hr />
+      <Child flag={counter}/>
+      <p>
+        {counter}
+      </p>
+      <button onClick={()=>setCounter(counter+1)}>Update Counter</button>
     </div>
   );
 }
