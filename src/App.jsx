@@ -8,9 +8,10 @@ import { RouterProvider } from "react-router-dom";
 
 export default function App() {
   const [users, setUsers] = useState([]);
+  const [cart,setCart] = useState([])
   const [currUser,setCurrUser] = useState({})
   return (
-    <AppContext.Provider value={{ users, setUsers,currUser,setCurrUser }}>
+    <AppContext.Provider value={{ users, setUsers,currUser,setCurrUser,cart,setCart }}>
       <RouterProvider router={router} />
     </AppContext.Provider>
   );
