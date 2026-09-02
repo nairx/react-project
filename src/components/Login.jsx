@@ -1,6 +1,6 @@
 import React from "react";
 import { AppContext } from "../App";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 import { Link, useNavigate } from "react-router-dom";
@@ -8,15 +8,22 @@ export default function Login() {
   const { users, setUsers, currUser, setCurrUser } = useContext(AppContext);
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  
+  const emailRef = useRef()
+  const passwordRef = useRef()
+
   const [message, setMessage] = useState();
   const navigate = useNavigate();
   const API = import.meta.env.VITE_API_URL;
+  console.log("Re-render")
   const handleLogin = async () => {
     // const found = users.find(
     //   (user) => user.email === email && user.password === password,
     // );
 
-    const found = await axios.post(`${API}/users/login`, { email, password });
+
+    
+    const found = await axios.post(`${API}/users/login`, { email:emailRef.current.value, password:passwordRef.current.value });
     console.log(found);
     if (found.data.email) {
       setCurrUser({ name: found.data.name, email: found.data.email });
@@ -38,14 +45,16 @@ export default function Login() {
         <input
           type="text"
           placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
+          ref={emailRef}
+          // onChange={(e) => setEmail(e.target.value)}
         />
       </p>
       <p>
         <input
           type="password"
           placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
+          ref={passwordRef}
+          // onChange={(e) => setPassword(e.target.value)}
         />
       </p>
       <button onClick={handleLogin}>Login</button>
