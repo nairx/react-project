@@ -23,7 +23,7 @@ export default function Login() {
     const found = await axios.post(`${API}/users/login`, { email:emailRef.current.value, password:passwordRef.current.value });
     console.log(found);
     if (found.data.email) {
-      setCurrUser({ name: found.data.name, email: found.data.email });
+      setCurrUser({ name: found.data.name, email: found.data.email,role:found.data.role });
       navigate("/");
     } else {
       setMessage("Access Denied");

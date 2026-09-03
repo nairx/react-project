@@ -11,12 +11,19 @@ function Header() {
         <li>
           <Link to="/">Home</Link>
         </li>
-         <li>
+        <li>
           <Link to="cart">Cart</Link>
         </li>
-         <li>
+        <li>
           <Link to="order">Order</Link>
         </li>
+
+        {currUser?.role === "admin" && (
+          <li>
+            <Link to="admin">Admin</Link>
+          </li>
+        )}
+
         <li>
           {currUser?.email ? (
             <Link to="login">Logout</Link>
