@@ -17,15 +17,15 @@ export default function Products() {
     const res = await axios.post(`${API}/products`, product);
     fetchProducts();
   };
+
+  const handleDelete = async (id) => {
+    await axios.delete(`${API}/products/delete/${id}`);
+    fetchProducts();
+  };
   return (
     <div>
       Products
       <p>
-        <input
-          type="number"
-          placeholder="Id"
-          onChange={(e) => setProduct({ ...product, id: e.target.value })}
-        />
         <input
           type="text"
           placeholder="Name"
@@ -54,7 +54,8 @@ export default function Products() {
         {products &&
           products.map((product) => (
             <li key={product.id}>
-              {product.name}-{product.description}-{product.price}
+              {product.name}-{product.description}-{product.price}-
+              <button onClick={() => handleDelete(product.id)}>Delete</button>
             </li>
           ))}
       </ol>
