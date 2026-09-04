@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 export default function Users() {
   const [users, setUsers] = useState();
   const API = import.meta.env.VITE_API_URL;
@@ -50,7 +51,7 @@ export default function Users() {
         {users &&
           users.map((user) => (
             <li key={user.id}>
-              {user.name}-{user.email}-{user.role}- <button onClick={() => handleDelete(user.id)}>Delete</button>
+              <Link to={`/admin/edit-user/${user.id}`}>{user.name}</Link>-{user.email}-{user.role}- <button onClick={() => handleDelete(user.id)}>Delete</button>
             </li>
           ))}
       </ol>

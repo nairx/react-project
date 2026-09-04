@@ -8,6 +8,7 @@ import Order from "./components/Order";
 import AdminLayout from "./components/AdminLayout";
 import Users from "./components/Users";
 import Products from "./components/Products";
+import EditUser from "./components/EditUser";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
         children: [
           { index: true, element: <Users /> },
           { path: "products", element: <Products /> },
+          { path: "edit-user/:id", element: <EditUser /> },
         ],
       },
     ],
