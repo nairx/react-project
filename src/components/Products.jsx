@@ -54,7 +54,7 @@ export default function Products() {
         {products &&
           products.map((product) => (
             <li key={product.id}>
-              {product.name}-{product.description}-{product.price}-
+              {product.name}-{product.description}-{product.price}-{product.imageUrl}-
               <button onClick={() => handleDelete(product.id)}>Delete</button>
             </li>
           ))}
